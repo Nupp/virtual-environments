@@ -30,6 +30,9 @@ jobs:
     steps:
     - 
       uses: actions/checkout@v2
+    - name: Switch context
+      run: |
+        cd node
     -
       name: Login to DockerHub
       uses: docker/login-action@v1
@@ -44,5 +47,4 @@ jobs:
         target: ${{ matrix.target }}
         tags: crizstian/devcontainer:${{ matrix.tag }}
         build-args: IMAGE=${{ matrix.base }}
-        context: "node/"
         file: "Dockerfile.truffle"
