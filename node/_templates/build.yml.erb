@@ -1,4 +1,5 @@
 name: Build and push images
+
 on:
   push:
     branches:
@@ -13,6 +14,9 @@ on:
 
 jobs:
   build:
+    defaults:
+      run:
+        working-directory: ./node
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -47,4 +51,3 @@ jobs:
         target: ${{ matrix.target }}
         tags: crizstian/devcontainer:${{ matrix.tag }}
         build-args: IMAGE=${{ matrix.base }}
-        file: "Dockerfile.truffle"
