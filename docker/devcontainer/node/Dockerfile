@@ -56,6 +56,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 # Install eslint
 # USER node
 
-RUN umask 0002 && npm install -g eslint && \
-    npm install -g truffle && \
-    npm cache clean --force > /dev/null 2>&1
+# RUN umask 0002 && npm install -g eslint && \
+#     npm install -g truffle && \
+#     npm cache clean --force > /dev/null 2>&1
