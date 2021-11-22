@@ -1,9 +1,10 @@
 name: "devcontainer-truffle"
 on:
-  schedule:
-    - cron: "0 0 * * *"
-  push:
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["base-node"]
+    types:
+      - completed
+
 jobs:
   bake:
     defaults:
