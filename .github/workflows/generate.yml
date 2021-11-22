@@ -7,7 +7,6 @@ on:
     paths:
     - "node/*"
     - "!node/build.rb"
-    - "!node/.generated"
     - "!README.md"
 
 jobs:
