@@ -29,10 +29,10 @@ jobs:
             target: <%= target %><% end %>
     steps:
     - uses: actions/checkout@v2
-    - uses: docker/build-push-action@v1
     - name: Render latest template
       run: |
         cd node
+    - uses: docker/build-push-action@v1
       env:
         DOCKER_BUILDKIT: "1"
       with:
