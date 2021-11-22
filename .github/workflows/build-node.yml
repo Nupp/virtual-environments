@@ -18,18 +18,21 @@ jobs:
       fail-fast: false
       matrix:
         base:
-          - <%= @seed[0] %>
+          - node:15
         tag:
-          - <%= @seed[1] %>
+          - node-15
         target:
-          - <%= @seed[2] %>
-        include:<% @images.each do |base,tag,target| %>
-          - base: <%= base %>
-            tag: <%= tag %>
-            target: <%= target %><% end %>
+          - linux
+        include:
+          - base: node:16
+            tag: node-16
+            target: linux
     steps:
     - uses: actions/checkout@v2
-    - uses: docker/build-push-action@v2
+    - name: Render latest template
+      run: |
+        cd node
+    - uses: docker/build-push-action@v1
       env:
         DOCKER_BUILDKIT: "1"
       with:
@@ -40,4 +43,3 @@ jobs:
         repository: crizstian/devcontainer
         tags: ${{ matrix.tag }}
         build_args: IMAGE=${{ matrix.base }},TAG=${{ matrix.tag }}
-        context: "node/"
