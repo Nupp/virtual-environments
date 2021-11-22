@@ -30,6 +30,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: docker/build-push-action@v1
+      run: |
+        cd node
       env:
         DOCKER_BUILDKIT: "1"
       with:

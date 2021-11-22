@@ -5,8 +5,7 @@ on:
     branches:
       - "main"
     paths:
-      - "node/build.rb"
-      - "node/linux"
+      - "node/*"
 
 jobs:
   generate-node:
