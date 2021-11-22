@@ -29,9 +29,6 @@ jobs:
             target: <%= target %><% end %>
     steps:
     - uses: actions/checkout@v2
-    - name: Render latest template
-      run: |
-        cd node
     - uses: docker/build-push-action@v1
       env:
         DOCKER_BUILDKIT: "1"
@@ -43,3 +40,4 @@ jobs:
         repository: crizstian/devcontainer
         tags: ${{ matrix.tag }}
         build_args: IMAGE=${{ matrix.base }},TAG=${{ matrix.tag }}
+        directory: "node/"
