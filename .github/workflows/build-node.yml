@@ -20,15 +20,18 @@ jobs:
       fail-fast: false
       matrix:
         base:
-          - <%= @seed[0] %>
+          - node:14
         tag:
-          - <%= @seed[1] %>
+          - truffle-node-14
         target:
-          - <%= @seed[2] %>
-        include:<% @images.each do |base,tag,target| %>
-          - base: <%= base %>
-            tag: <%= tag %>
-            target: <%= target %><% end %>
+          - linux
+        include:
+          - base: node:15
+            tag: truffle-node-15
+            target: linux
+          - base: node:16
+            tag: truffle-node-16
+            target: linux
     steps:
     - 
       uses: actions/checkout@v2
