@@ -1,0 +1,49 @@
+name: Build and push images
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - "node/*"
+  schedule:
+    # As well as running when we make changes we should run at least
+    # every week in order to pick up new parent images and new versions of Snyk
+    - cron:  "0 0 * * 0"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        base:
+          - node:15
+        tag:
+          - truffle-node-15
+        target:
+          - linux
+        include:
+          - base: node:16
+            tag: truffle-node-16
+            target: linux
+    steps:
+    - 
+      uses: actions/checkout@v2
+    -
+      name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    - 
+      uses: docker/build-push-action@v2
+      env:
+        DOCKER_BUILDKIT: "1"
+      with:
+        # add_git_labels: true
+        target: ${{ matrix.target }}
+        # repository: crizstian/devcontainer
+        tags: crizstian/devcontainer:${{ matrix.tag }}
+        build_args: IMAGE=${{ matrix.base }},TAG=${{ matrix.tag }}
+        context: "node/"
