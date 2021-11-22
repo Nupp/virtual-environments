@@ -5,9 +5,9 @@ on:
     branches:
       - "main"
     paths:
-      - "node/build.rb"
-      - "node/linux"
-      - "node/alpine"
+    - "node/*"
+    - "!node/build.rb"
+    - "!README.md"
 
 jobs:
   generate-node:
