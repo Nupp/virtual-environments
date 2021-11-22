@@ -24,7 +24,7 @@ group "default" {
 # LOCAL=true ARM64=true AMD64=false docker buildx bake --builder devcontainer-core-node
 
 target "devcontainer-core-node" {
-    context="."
+    context="./"
     dockerfile = "Dockerfile"
     args = {
       IMAGE = "node:16"
