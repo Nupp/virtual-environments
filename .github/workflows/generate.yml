@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - "main"
-    paths:
-      - "node/build.rb"
-      - "node/linux"
-      - "node/alpine"
 
 jobs:
   generate-node:
