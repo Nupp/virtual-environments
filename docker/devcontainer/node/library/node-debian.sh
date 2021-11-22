@@ -87,8 +87,9 @@ if type yarn > /dev/null 2>&1; then
     echo "Yarn already installed."
 else
     # Import key safely (new method rather than deprecated apt-key approach) and install
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor > /usr/share/keyrings/yarn-archive-keyring.gpg
+    curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor > /usr/share/keyrings/yarn-archive-keyring.gpg
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/yarn-archive-keyring.gpg] https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
+    gpg --keyserver hkp://keyserver.ubuntu.com --refresh-keys
     apt-get update
     apt-get -y install --no-install-recommends yarn
 fi
