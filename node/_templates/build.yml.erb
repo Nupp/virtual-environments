@@ -41,9 +41,8 @@ jobs:
       env:
         DOCKER_BUILDKIT: "1"
       with:
-        # add_git_labels: true
         target: ${{ matrix.target }}
-        # repository: crizstian/devcontainer
         tags: crizstian/devcontainer:${{ matrix.tag }}
-        build_args: IMAGE=${{ matrix.base }},TAG=${{ matrix.tag }}
+        build-args: IMAGE=${{ matrix.base }}
         context: "node/"
+        file: "Dockerfile.truffle"
