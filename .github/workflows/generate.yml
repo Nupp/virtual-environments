@@ -9,7 +9,7 @@ on:
       - "node/linux"
 
 jobs:
-  generate:
+  generate-node:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -19,7 +19,8 @@ jobs:
           ruby-version: 2.6.x
       - name: Render latest template
         run: |
-          ruby node/build.rb
+          cd node
+          ruby build.rb
       - uses: seanmiddleditch/gha-publish-to-git@master
         with:
           branch: main
