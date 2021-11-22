@@ -5,7 +5,10 @@ on:
     branches:
     - main
     paths:
-    - ".github/workflows/build-node.yml"
+    - "node/*"
+    - "!node/build.rb"
+    - "!node/.generated"
+    - "!README.md"
   # schedule:
   #   # As well as running when we make changes we should run at least
   #   # every week in order to pick up new parent images and new versions of Snyk
