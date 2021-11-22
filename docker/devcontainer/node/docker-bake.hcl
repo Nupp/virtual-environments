@@ -26,6 +26,9 @@ group "default" {
 target "devcontainer-core-node" {
     context="."
     dockerfile = "Dockerfile"
+    args = {
+      IMAGE = "node:16"
+    }
     tags = [
         "crizstian/devcontainer-core-node:latest",
         notequal("",TAG) ? "crizstian/devcontainer-core-node:${TAG}": "",
