@@ -2,7 +2,7 @@ name: "Generate Actions to build Nupp images"
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - build.rb
       - linux
@@ -11,7 +11,7 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
       - name: Set up Ruby 2.6
         uses: actions/setup-ruby@v1
         with:
@@ -19,9 +19,9 @@ jobs:
       - name: Render latest template
         run: |
           ruby node/build.rb
-      - uses: seanmiddleditch/gha-publish-to-git@master
+      - uses: seanmiddleditch/gha-publish-to-git@main
         with:
-          branch: master
+          branch: main
           github_token: ${{ secrets.WORKFLOW_TOKEN }}
           github_pat: ${{ secrets.WORKFLOW_TOKEN }}
           commit_author: "cristiano.rosetti@gmail.com"
